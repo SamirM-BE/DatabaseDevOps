@@ -6,9 +6,9 @@
   xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.2.xsd http://www.liquibase.org/xml/ns/pro http://www.liquibase.org/xml/ns/pro/liquibase-pro-4.2.xsd">  
 
 
-   <changeSet author="samir" id="4" context="RELEASE_1_17">
+   <changeSet author="samir" id="4" context="RELEASE_1_17" runOnChange="true">
    
-      <createProcedure encoding="UTF-8" path="/v1.17/procedures/procedure_one.sql" procedureName="insertDBDEPARTMENTS" relativeToChangelogFile="true" />
+      <createProcedure encoding="UTF-8" path="/v1.17/procedures/procedure_one.sql" procedureName="insertDBDEPARTMENTS"  relativeToChangelogFile="true" />
 	  <rollback>
          <dropProcedure procedureName="insertDBDEPARTMENTS" />
       </rollback>

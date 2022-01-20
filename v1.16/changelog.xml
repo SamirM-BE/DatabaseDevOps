@@ -6,10 +6,8 @@
 	
 	<include file="\v1.16\2020-06-06_EVL-2240-create-table_link.sql"/>
 	<include file="\v1.16\2020-07-01_EVL-2286-insert-link.sql"/>
-	
 	<include file="\v1.16\2020-07-02-alter-link.sql"/>
-	<!--
-	-->
+	<!---->
 	
 	
 </databaseChangeLog>
