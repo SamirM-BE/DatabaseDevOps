@@ -15,8 +15,6 @@ stages:
         script: >
           liquibase --defaults-file=dev.properties validate
 
-          liquibase --defaults-file=dev.properties status
-
           liquibase --defaults-file=dev.properties tag JOBID_$(Build.BuildId)
     - task: PowerShell@2
       displayName: 'Verify changes on PROD env'
@@ -24,8 +22,6 @@ stages:
         targetType: 'inline'
         script: >
           liquibase --defaults-file=prod.properties validate
-
-          liquibase --defaults-file=prod.properties status
 
           liquibase --defaults-file=prod.properties tag JOBID_$(Build.BuildId)
 - stage: DEV
@@ -39,16 +35,13 @@ stages:
       inputs:
         targetType: 'inline'
         script: >
-          liquibase --defaults-file=dev.properties updateSQL 
-
           liquibase --defaults-file=dev.properties update
     - task: PowerShell@2
       displayName: 'Test rollback on DEV '
       inputs:
         targetType: 'inline'
         script: >
-          liquibase --defaults-file=dev.properties rollbackSQL JOBID_$(Build.BuildId)
-          
+   
           liquibase --defaults-file=dev.properties rollback JOBID_$(Build.BuildId)
     - task: PowerShell@2
       displayName: 'Finalize deployment'
@@ -81,16 +74,12 @@ stages:
       inputs:
         targetType: 'inline'
         script: >
-          liquibase --defaults-file=prod.properties updateSQL 
-
           liquibase --defaults-file=prod.properties update
     - task: PowerShell@2
       displayName: 'Test rollback on PROD'
       inputs:
         targetType: 'inline'
         script: >
-          liquibase --defaults-file=prod.properties rollbackSQL JOBID_$(Build.BuildId)
-          
           liquibase --defaults-file=prod.properties rollback JOBID_$(Build.BuildId)
     - task: PowerShell@2
       displayName: 'Finalize deployment'
